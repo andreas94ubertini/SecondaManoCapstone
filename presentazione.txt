@@ -1,0 +1,24 @@
+Progetto CapStone di Andreas Ubertini 
+
+ 
+
+Benvenuti su SecondaMano - Il Tuo Mercato Online 
+
+Sei alla ricerca di un luogo dove puoi comprare e vendere oggetti usati in modo semplice e sicuro? Allora hai trovato la soluzione perfetta! SecondaMano è un nuovo sito web basato su .NET MVC con Entity Framework, progettato appositamente per rendere il processo di vendita e acquisto di oggetti di seconda mano un'esperienza piacevole e conveniente. 
+
+Cosa offriamo: 
+
+Pubblicazione di Annunci: Su SecondaMano, puoi facilmente pubblicare annunci per gli oggetti che desideri vendere. Che si tratti di mobili, elettronica, abbigliamento o qualsiasi altro articolo, basta un paio di clic per mettere in mostra ciò che desideri cedere. 
+
+Offerte e Trattative: Gli acquirenti possono fare offerte sugli annunci che li interessano. Questo sistema di offerte rende la negoziazione trasparente e ti consente di ottenere il miglior prezzo possibile per i tuoi articoli. 
+
+Sicurezza e Fiducia: La sicurezza dei nostri utenti è fondamentale. SecondaMano implementa un sistema di ranking del venditore per avere un’esperienza sempre positiva. 
+
+Ricerca : Trovare ciò che desideri è facile grazie alla funzione di ricerca. 
+
+ 
+
+SecondaMano - Il tuo partner fidato per il mercato degli oggetti di seconda mano! 
+
+ 
+ 

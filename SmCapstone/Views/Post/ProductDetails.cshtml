@@ -1,0 +1,125 @@
+﻿@model SmCapstone.Models.Products
+
+@{
+    ViewBag.Title = "ProductDetails";
+}
+
+<h2>ProductDetails</h2>
+
+<div>
+    <h4>Products</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Img1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.img2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.img2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.img3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.img3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryPrice)
+        </dd>
+
+        <dt>
+            Categoria:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Categories.Name)
+        </dd>
+
+    </dl>
+</div>
+@if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Users.Username)
+{
+
+<div>
+    oggetto tuo
+</div>
+}
+else
+            {
+                <p>Non sei il propietario</p>
+            }
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProduct }) |
+    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Fai un offerta", "MakeOffer", new { id = Model.IdProduct })
+</p>
