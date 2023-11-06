@@ -255,9 +255,8 @@
     <Content Include="Views\Post\InsertNewPost.cshtml" />
     <Content Include="Views\Home\AllProducts.cshtml" />
     <Content Include="Views\Post\ProductDetails.cshtml" />
-    <Content Include="Views\Post\MakeOffer.cshtml" />
-    <Content Include="Views\Post\PartialProductInfo.cshtml" />
     <Content Include="Views\Post\CheckOut.cshtml" />
+    <Content Include="Views\Post\PartialMakeOffer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

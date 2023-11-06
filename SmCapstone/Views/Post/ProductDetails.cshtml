@@ -4,122 +4,124 @@
     ViewBag.Title = "ProductDetails";
 }
 
-<h2>ProductDetails</h2>
 
-<div>
-    <h4>Products</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Users.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Img1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Img1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.img2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.img2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.img3)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.img3)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSold)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSold)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeliveryPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeliveryPrice)
-        </dd>
-
-        <dt>
-            Categoria:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Categories.Name)
-        </dd>
-
-    </dl>
-</div>
 @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Users.Username)
 {
 
-<div>
-    oggetto tuo
-</div>
+    <div>
+        oggetto tuo
+    </div>
 }
 else
-            {
-                <p>Non sei il propietario</p>
-            }
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProduct }) |
-    @Html.ActionLink("Back to List", "Index")
-    @Html.ActionLink("Fai un offerta", "MakeOffer", new { id = Model.IdProduct })
-</p>
+{
+    <p>Non sei il propietario</p>
+}
+
+
+
+
+<!--Main layout-->
+<main class="mt-5 pt-4 card p-5">
+    <div class="container mt-5">
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="card rounded-bottom-0 rounded-top-1 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="card-text m-0">Venduto da: <strong>@Model.Users.Username</strong></p>
+                            <a class="btn btn-secondary">Messaggio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+                <img src="~/Content/assets/productsImgs/@Model.Img1" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+                <!--Content-->
+                <div class="p-4">
+                    <p class="lead">
+                        <span class="fw-bold">@Model.Name</span>
+                    </p>
+                    <div class="mb-3">
+                        <a href="">
+                            <span class="badge bg-dark me-1">Category 2</span>
+                        </a>
+                        <a href="">
+                            <span class="badge bg-info me-1">New</span>
+                        </a>
+                        <a href="">
+                            <span class="badge bg-danger me-1">Bestseller</span>
+                        </a>
+                    </div>
+
+                    <p class="lead">
+                        Prezzo richiesto:
+                        <span class="fw-bold">@String.Format("{0:0.00 €}", Model.Price)</span>
+                    </p>
+                    <p class="lead">
+                        Spedizione:
+                        <span class="fw-bold">@String.Format("{0:0.00 €}", Model.DeliveryPrice)</span>
+                    </p>
+                    <p class="lead">
+                        Categoria:
+                        <span class="fw-bold">@Model.Categories.Name</span>
+                    </p>
+                    <p class="lead">
+                        Si trova a:
+                        <span class="fw-bold">@Model.Location</span>
+                    </p>
+
+
+                    <p style="font-size: 20px;">Descrizione:</p>
+
+                    <p>@Model.Description</p>
+
+                    <div class="d-flex flex-column flex-md-row gap-2">
+                        @{Html.RenderAction("PartialMakeOffer", Model.Bids); }
+                    </div>
+                    
+                </div>
+                <!--Content-->
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+
+        <hr />
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-md-6 text-center">
+                <h4 class="my-4 h4">Informazione aggiutive:</h4>
+
+                <p>@Model.Description</p>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <img src="~/Content/assets/productsImgs/@Model.img2" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <img src="~/Content/assets/productsImgs/@Model.img3" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+    </div>
+</main>
+<!--Main layout-->

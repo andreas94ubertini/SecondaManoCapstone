@@ -64,22 +64,16 @@ namespace SmCapstone.Controllers
             Products p = db.Products.Find(id);
             return View(p);
         }
-        public ActionResult PartialProductInfo(int id)
-        {
-            return PartialView(db.Products.Find(id));
-        }
         [HttpGet]
-        public ActionResult MakeOffer(int id)
+        public ActionResult PartialMakeOffer()
         {
-            Session["Product"] = db.Products.Find(id);
-            return View();
+            return PartialView();
         }
         [HttpPost]
-        public ActionResult MakeOffer([Bind(Exclude = "IsAccepted,BidDate")] Bids b)
+        public ActionResult PartialMakeOffer(int id,[Bind(Exclude = "IsAccepted,BidDate")] Bids b)
         {
             Users currentUser = Session["currentUser"] as Users;
             Products p = Session["Product"] as Products;
-            int id = p.IdProduct;
             b.BidDate = DateTime.Now;
             b.IdProduct = id;
             b.IdUser = currentUser.IdUser;
@@ -87,17 +81,15 @@ namespace SmCapstone.Controllers
             {
                 db.Bids.Add(b);
                 db.SaveChanges();
-                return RedirectToAction("ProductDetails", new
-                {
-                    id
-                });
+                return PartialView();
             }
             else
             {
-                return View();
+                return PartialView();
             }
-
+            
         }
+
         public ActionResult DeclineOffer(int id)
         {
             Bids b = db.Bids.Find(id);

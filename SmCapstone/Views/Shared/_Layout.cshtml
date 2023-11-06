@@ -14,42 +14,78 @@
           rel="stylesheet" />
 </head>
 <body>
-    <header class="main-header">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg main-nav px-0">
-                <a class="navbar-brand" href="/mojo">
-                    <img src="http://rajeshdas.com/assets/images/logo.svg" alt="rajeshdas.com">
+
+
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  
+        <div class="container">
+   
+            <button class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent1"
+                    aria-controls="navbarSupportedContent1"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+             
+                <a class="navbar-brand mt-2 mt-sm-0" href="/Home/Index">
+                    <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                         height="20"
+                         alt="MDB Logo"
+                         loading="lazy" />
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon-bar icon-bar-1"></span>
-                    <span class="icon-bar icon-bar-2"></span>
-                    <span class="icon-bar icon-bar-3"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="mainMenu">
-                    <ul class="navbar-nav ml-auto text-uppercase f1">
-                        <li>
-                            @Html.ActionLink("UserIndex", "Index", "Users", new { area = "" }, new { @class = "nav-link link-light" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link link-light" })
-                        </li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li><a href="/Users/LogOut" class="btn btn-danger">LogOut</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="/Users/LogIn" class="btn btn-success">LogIn</a></li>
-                        }
-                    </ul>
-                </div>
-            </nav>
+               
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link " href="/Home/Index">Home</a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/Users/LogOut" class="btn btn-danger">LogOut</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/Users/LogIn" class="btn btn-success">LogIn</a></li>
+                    }
+                </ul>
+                
+            </div>
+     
+            <div class="d-flex align-items-center">
+                
+                <a class="nav-link me-3" href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                </a>
+
+                <a class="nav-link me-3" href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a class="nav-link me-3" href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded px-2 nav-link"
+                   target="_blank">
+                    <i class="fab fa-github me-2"></i>MDB GitHub
+                </a>
+            </div>
+
         </div>
-    </header>
+    
+    </nav>
 
 
 
-    <div class="container body-content ">
+
+
+
+    <div class="container body-content mt-5">
         @RenderBody()
         <hr />
         <footer>
