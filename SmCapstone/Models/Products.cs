@@ -24,11 +24,9 @@ namespace SmCapstone.Models
         public string Brand { get; set; }
 
         [Required]
-        [Display(Name = "Descrizione")]
         public string Description { get; set; }
 
         [Column(TypeName = "money")]
-        [Display(Name = "Prezzo")]
         public decimal Price { get; set; }
 
         [Required]
@@ -42,11 +40,9 @@ namespace SmCapstone.Models
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "Luogo in cui si trova")]
         public string Location { get; set; }
 
         [Column(TypeName = "money")]
-        [Display(Name = "Spese di spedizione")]
         public decimal DeliveryPrice { get; set; }
 
         public int IdUser { get; set; }

@@ -18,15 +18,13 @@ namespace SmCapstone.Models
         public int IdBid { get; set; }
 
         [Column(TypeName = "money")]
-        [Display(Name = "Offerta")]
         public decimal Price { get; set; }
 
         [StringLength(200)]
-        [Display(Name = "Messaggio (opzionale)")]
         public string Message { get; set; }
-        [Display(Name = "Data dell'offerta")]
+
         public DateTime BidDate { get; set; }
-        
+
         public bool? IsAccepted { get; set; }
 
         public int IdUser { get; set; }

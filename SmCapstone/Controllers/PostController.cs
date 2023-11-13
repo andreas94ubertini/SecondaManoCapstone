@@ -81,6 +81,7 @@ namespace SmCapstone.Controllers
             {
                 db.Bids.Add(b);
                 db.SaveChanges();
+                ModelState.Clear();
                 return PartialView();
             }
             else

@@ -12,6 +12,10 @@ namespace SmCapstone.Models
         public Users()
         {
             Bids = new HashSet<Bids>();
+            Chats = new HashSet<Chats>();
+            Chats1 = new HashSet<Chats>();
+            Messages = new HashSet<Messages>();
+            Messages1 = new HashSet<Messages>();
             Products = new HashSet<Products>();
             Reviews = new HashSet<Reviews>();
             Reviews1 = new HashSet<Reviews>();
@@ -22,12 +26,10 @@ namespace SmCapstone.Models
 
         [Required]
         [StringLength(30)]
-        [Display(Name = "Nome")]
         public string Name { get; set; }
 
         [Required]
         [StringLength(30)]
-        [Display(Name = "Cognome")]
         public string Surname { get; set; }
 
         [Required]
@@ -40,9 +42,8 @@ namespace SmCapstone.Models
 
         [Required]
         [StringLength(30)]
-        [Display(Name = "Password")]
         public string Psw { get; set; }
-        [Display(Name = "Immagine profilo")]
+
         public string Img { get; set; }
 
         [Column(TypeName = "date")]
@@ -54,6 +55,18 @@ namespace SmCapstone.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bids> Bids { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chats> Chats { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chats> Chats1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Messages> Messages { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Messages> Messages1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Products> Products { get; set; }

@@ -161,6 +161,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,7 +169,9 @@
     </Compile>
     <Compile Include="Models\Bids.cs" />
     <Compile Include="Models\Categories.cs" />
+    <Compile Include="Models\Chats.cs" />
     <Compile Include="Models\Context.cs" />
+    <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\SiteRole.cs" />
@@ -257,6 +260,11 @@
     <Content Include="Views\Post\ProductDetails.cshtml" />
     <Content Include="Views\Post\CheckOut.cshtml" />
     <Content Include="Views\Post\PartialMakeOffer.cshtml" />
+    <Content Include="Views\Message\NewMessage.cshtml" />
+    <Content Include="Views\Message\MyMessages.cshtml" />
+    <Content Include="Views\Message\PartialResponse.cshtml" />
+    <Content Include="Views\Message\RenderChat.cshtml" />
+    <Content Include="Views\Message\SendResponse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string userImg = Session["ProfileImg"] as string;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,68 +19,39 @@
 <body>
 
 
-  
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-  
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+
         <div class="container">
-   
-            <button class="navbar-toggler"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarSupportedContent1"
-                    aria-controls="navbarSupportedContent1"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
 
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-             
-                <a class="navbar-brand mt-2 mt-sm-0" href="/Home/Index">
-                    <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-                         height="20"
-                         alt="MDB Logo"
-                         loading="lazy" />
-                </a>
-               
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link " href="/Home/Index">Home</a>
-                    </li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a href="/Users/LogOut" class="btn btn-danger">LogOut</a></li>
-                    }
-                    else
-                    {
-                        <li><a href="/Users/LogIn" class="btn btn-success">LogIn</a></li>
-                    }
-                </ul>
-                
-            </div>
-     
-            <div class="d-flex align-items-center">
-                
-                <a class="nav-link me-3" href="#">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                </a>
+            <a class="navbar-brand mt-2 mt-sm-0" href="/Home/Index">
+                <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                     height="20"
+                     alt="MDB Logo"
+                     loading="lazy" />
+            </a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="~/Content/assets/profileImgs/@userImg" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="/Post/InsertNewPost">Inserisci Annuncio</a></li>
+                        <li><a class="dropdown-item" href="/Users/ProfilePage">Profilo</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/Users/LogOut">Log-out</a></li>
 
-                <a class="nav-link me-3" href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a class="nav-link me-3" href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded px-2 nav-link"
-                   target="_blank">
-                    <i class="fab fa-github me-2"></i>MDB GitHub
-                </a>
-            </div>
+                    </ul>
 
+                </div>
+            }
+            else
+            {
+                <a href="/Users/LogIn" class="btn btn-success">LogIn</a>
+            }
         </div>
-    
+
     </nav>
 
 

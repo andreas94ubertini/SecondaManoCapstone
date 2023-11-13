@@ -13,6 +13,7 @@ namespace SmCapstone.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            TempData["Categories"] = db.Categories.ToList();
 
             return View(db.Products.ToList());
         }

@@ -22,6 +22,7 @@ namespace SmCapstone.Controllers
             {
                 Users currentUser = db.Users.First(us => us.Username == HttpContext.User.Identity.Name);
                 Session["currentUser"] = currentUser;
+                Session["ProfileImg"] = currentUser.Img;
             }
 
             return View();
@@ -50,13 +51,15 @@ namespace SmCapstone.Controllers
                     }
                     else
                     {
-                        u.Img = "";
+                        u.Img = "defaultProfile.jpg";
                     }
                     u.Role = "User";
                     u.Date = DateTime.Now;
                     db.Users.Add(u);
                     db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(u.Username, false);
+                    Session["currentUser"] = u;
+                    Session["ProfileImg"] = u.Img;
                     return RedirectToAction("Index");
                 }
                 else
@@ -97,6 +100,7 @@ namespace SmCapstone.Controllers
                 db.Entry(u).State = EntityState.Modified;
                 db.SaveChanges();
                 Session["currentUser"] = u;
+                Session["ProfileImg"] = u.Img;
                 return RedirectToAction("Index");
             }
             else
@@ -118,6 +122,8 @@ namespace SmCapstone.Controllers
                 if (user.Username != null && user.Psw == u.Psw)
                 {
                     FormsAuthentication.SetAuthCookie(user.Username, false);
+                    Session["currentUser"] = u;
+                  
                     return RedirectToAction("Index");
                 }
                 else
@@ -140,7 +146,8 @@ namespace SmCapstone.Controllers
                 {
                     Users u = db.Users.First(us => us.Username == HttpContext.User.Identity.Name);
                     Session["currentUser"] = u;
-                    return View(u);
+                Session["ProfileImg"] = u.Img;
+                return View(u);
                 }
                 else
                 {
