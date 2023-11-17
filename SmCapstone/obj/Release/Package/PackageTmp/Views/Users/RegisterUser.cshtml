@@ -1,0 +1,103 @@
+﻿@model SmCapstone.Models.Users
+
+@{
+    ViewBag.Title = "RegisterUser";
+}
+
+<h2 class="text-center my-4">Registra un nuovo account per iniziare a fare affari...</h2>
+
+
+@using (Html.BeginForm("RegisterUser", "Users", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <section class="vh-100 bg-image text-light"
+                 style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+            <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+                <div class="container h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="card shadow" style="border-radius: 15px;">
+                                <div class="card-body p-5">
+                                    <h2 class="text-uppercase text-center mb-5">Inserisci i tuoi dati</h2>
+                                    <form>
+                                        <div class="form-outline mb-2 border-bottom">
+                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-10" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                                        <div class="form-outline mb-2 border-bottom">
+                                            @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-10" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+
+                                        <div class="form-outline mb-2 border-bottom">
+                                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-10" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                                        <div class="form-outline mb-2 border-bottom">
+                                            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-10" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                                        <div class="form-outline mb-2 border-bottom">
+                                            @Html.LabelFor(model => model.Psw, htmlAttributes: new { @class = "control-label col-md-10" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Psw, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Psw, "", new { @class = "text-danger" })
+
+                                        <div class="form-outline mb-2 border-bottom">
+                                            @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-10" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control mt-1", type = "file" } })
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
+
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <div class="col-12">
+                                                <input type="submit" value="Registrati" class="btn btn-success btn-block btn-lg gradient-custom-4 text-light fs-6" />
+                                            </div>
+                                        </div>
+
+                                        <p class="text-center text-muted mt-5 mb-0">
+                                            Hai già un account? <a href="/Users/LogIn"
+                                                                   class="fw-bold text-body"><u>Accedi qui</u></a>
+                                        </p>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

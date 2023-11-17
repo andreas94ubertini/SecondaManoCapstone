@@ -1,0 +1,137 @@
+﻿@model SmCapstone.Models.Products
+
+@{
+    ViewBag.Title = "ProductDetails";
+}
+
+
+
+<!--Main layout-->
+<main class="mt-5 pt-4 card p-5">
+    <div class="container mt-5">
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="card rounded-bottom-0 rounded-top-1 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="card-text m-0">Venduto da: <strong>@Model.Users.Username</strong></p>
+                            @if (User.Identity.Name == Model.Users.Username || User.Identity.IsAuthenticated == false)
+                            {
+                                <a href="/Message/NewMessage/@Model.Users.IdUser" class="btn btn-secondary disabled">Messaggio</a>
+                            }
+                            else
+                            {
+                                <a href="/Message/NewMessage/@Model.Users.IdUser" class="btn btn-secondary">Messaggio</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+                <img src="~/Content/assets/productsImgs/@Model.Img1" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+                <!--Content-->
+                <div class="p-4">
+                    <p class="lead">
+                        <span class="fw-bold">@Model.Name</span>
+                    </p>
+                    <div class="mb-3">
+                        <a href="">
+                            <span class="badge bg-dark me-1">Category 2</span>
+                        </a>
+                        <a href="">
+                            <span class="badge bg-info me-1">New</span>
+                        </a>
+                        <a href="">
+                            <span class="badge bg-danger me-1">Bestseller</span>
+                        </a>
+                    </div>
+
+                    <p class="lead">
+                        Prezzo richiesto:
+                        <span class="fw-bold">@String.Format("{0:0.00 €}", Model.Price)</span>
+                    </p>
+                    <p class="lead">
+                        Spedizione:
+                        <span class="fw-bold">@String.Format("{0:0.00 €}", Model.DeliveryPrice)</span>
+                    </p>
+                    <p class="lead">
+                        Categoria:
+                        <span class="fw-bold">@Model.Categories.Name</span>
+                    </p>
+                    <p class="lead">
+                        Si trova a:
+                        <span class="fw-bold">@Model.Location</span>
+                    </p>
+
+
+                    <p style="font-size: 20px;">Descrizione:</p>
+
+                    <p>@Model.Description</p>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex flex-column flex-md-row gap-2">
+                            @if (User.Identity.Name == Model.Users.Username)
+                            {
+                                <p>Offerte ricevute: @Model.Bids.Count</p>
+                            }
+                            else
+                            {
+                                {
+                                    Html.RenderAction("PartialMakeOffer", Model.Bids);
+
+                                }
+                            }
+
+
+                        </div>
+                    }
+                    else
+                    {
+                        <p><a href="/Users/Login">Accedi</a> o <a href="/Users/RegisterUser">Registrati</a> per fare un offerta</p>
+                    }
+                </div>
+                <!--Content-->
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+
+        <hr />
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-md-6 text-center">
+                <h4 class="my-4 h4">Informazione aggiutive:</h4>
+
+                <p>@Model.Description</p>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <img src="~/Content/assets/productsImgs/@Model.img2" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <img src="~/Content/assets/productsImgs/@Model.img3" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+    </div>
+</main>
+<!--Main layout-->

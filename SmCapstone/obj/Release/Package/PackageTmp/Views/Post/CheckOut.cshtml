@@ -1,0 +1,202 @@
+﻿@model SmCapstone.Models.Transactions
+
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+<h2>CheckOut</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="container d-lg-flex justify-content-center rounded-1 bg-light">
+        <div class="box-1 bg-light user">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <p class="dis fw-bold">Venduto da:</p>
+                <div class="d-flex">
+                    <img src="~/Content/assets/profileImgs/@Model.Bids.Users.Img"
+                         class="pic rounded-circle" alt="">
+                    <p class="ps-2 dis fw-bold">@Model.Bids.Products.Users.Username</p>
+                </div>
+            </div>
+            <div class="box-inner-1 pb-3 mb-3 ">
+                <div class="d-flex justify-content-between mb-3 userdetails">
+                    <p class="fw-bold">@Model.Bids.Products.Name</p>
+                    <p class="fw-lighter"><span class="fas fa-euro-sign">@String.Format("{0:0.00}", Model.Bids.Products.Price)</span></p>
+                </div>
+                <div id="my" class="carousel slide carousel-fade img-details" data-bs-ride="carousel"
+                     data-bs-interval="2000">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#my" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#my" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#my" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="~/Content/assets/productsImgs/@Model.Bids.Products.Img1"
+                                 class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/Content/assets/productsImgs/@Model.Bids.Products.img2"
+                                 class="d-block w-100 h-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/Content/assets/productsImgs/@Model.Bids.Products.img3"
+                                 class="d-block w-100">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#my" data-bs-slide="prev">
+                        <div class="icon">
+                            <span class="fas fa-arrow-left"></span>
+                        </div>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#my" data-bs-slide="next">
+                        <div class="icon">
+                            <span class="fas fa-arrow-right"></span>
+                        </div>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <p class="dis info my-3">
+                    @Model.Bids.Products.Description
+                </p>
+                <div class="radiobtn">
+                    <input type="radio" name="box" id="one">
+                    <label for="one" class="box py-2 first">
+                        <div>
+                            <div class="d-flex align-items-start">
+                                <span class="circle bg-success"></span>
+                                <div class="course">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fw-bold">
+                                            Offerta Accettata:
+                                        </span>
+                                        <span class="fas fa-euro-sign">@String.Format("{0:0.00}", Model.Bids.Price)</span>
+                                    </div>
+                                    <p>@Model.Bids.Message</p>
+                                    <p>@Model.Bids.BidDate</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+        </div>
+        <div class="box-2">
+            <div class="box-inner-2">
+                <div>
+                    <p class="fw-bold">Payment Details</p>
+                    <p class="dis mb-3">Complete your purchase by providing your payment details</p>
+                </div>
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.IdTransaction)
+
+
+                    <div class="form-outline mb-2 border-bottom">
+                        @Html.LabelFor(model => model.IsShipping, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-md-2" })
+                        <div class="col-12">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.IsShipping)
+                                @Html.ValidationMessageFor(model => model.IsShipping, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-2 border-bottom">
+                        @Html.LabelFor(model => model.Province, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-md-2" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.Province, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Province, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-2 border-bottom">
+                        @Html.LabelFor(model => model.Region, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-12" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-2 border-bottom">
+                        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-12" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-2 border-bottom">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-12" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-2 border-bottom">
+                        @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-12" })
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(model => model.IdBid)
+
+
+                    <div>
+                        <p class="dis fw-bold mb-2">Dettagli Pagamento</p>
+                        <div class="d-flex align-items-center justify-content-between form-outline mb-2 border-bottom">
+                            <div class="fab fa-cc-visa ps-3"></div>
+                            <input type="text" class="form-control" placeholder="Dettagli Carta">
+                            <div class="d-flex w-50">
+                                <input type="text" class="form-control px-0" placeholder="MM/YY">
+                                <input type="password" maxlength=3 class="form-control px-0" placeholder="CVV">
+                            </div>
+                        </div>
+                        <div class="form-outline mb-2 border-bottom">
+                            <p class="dis fw-bold mb-2">Nome sulla carta</p>
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="address">
+
+                            <div class="d-flex flex-column dis">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <p>Prodotto</p>
+                                    <p><span class="fas fa-dollar-sign"></span>@String.Format("{0:0.00 €}", Model.Bids.Price)</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <p>Spedizione</p>
+                                    <p><span class="fas fa-dollar-sign"></span>@String.Format("{0:0.00 €}", Model.Bids.Products.DeliveryPrice)</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <p class="fw-bold">Totale</p>
+                                    <p class="fw-bold"><span class="fas fa-dollar-sign"></span>@String.Format("{0:0.00 €}", Model.Bids.Price + Model.Bids.Products.DeliveryPrice)</p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <input type="submit" value="Paga Ora @String.Format("{0:0.00 €}", Model.Bids.Price + Model.Bids.Products.DeliveryPrice)" class="btn btn-primary w-100" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

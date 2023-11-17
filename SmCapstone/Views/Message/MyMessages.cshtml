@@ -1,0 +1,54 @@
+﻿@model SmCapstone.Models.Chats
+
+@{
+    ViewBag.Title = "MyMessages";
+}
+
+<h2>MyMessages</h2>
+
+<div>
+    <h4>Chats</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users1.Name)
+        </dd>
+
+    </dl>
+</div>
+@foreach (SmCapstone.Models.Messages m in Model.Messages)
+{
+    <div class="card">
+        <div class="card-body">
+            @if (m.Users.Username == User.Identity.Name)
+            {
+                <div class="d-flex flex-column align-items-end px-5">
+                    <p class="card-text">Inviato da: @m.Users.Username</p>
+                    <p class="card-text">@m.Message</p>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex flex-column align-items-start px-5">
+                    <p class="card-text">Inviato da: @m.Users.Username</p>
+                    <p class="card-text">@m.Message</p>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+
+
