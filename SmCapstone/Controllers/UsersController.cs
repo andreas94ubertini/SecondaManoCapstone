@@ -16,17 +16,7 @@ namespace SmCapstone.Controllers
     {
         private Context db = new Context();
 
-        public ActionResult Index()
-        {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                Users currentUser = db.Users.First(us => us.Username == HttpContext.User.Identity.Name);
-                Session["currentUser"] = currentUser;
-                Session["ProfileImg"] = currentUser.Img;
-            }
 
-            return View();
-        }
         [HttpGet]
         public ActionResult RegisterUser()
         {
@@ -60,7 +50,7 @@ namespace SmCapstone.Controllers
                     FormsAuthentication.SetAuthCookie(u.Username, false);
                     Session["currentUser"] = u;
                     Session["ProfileImg"] = u.Img;
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -101,7 +91,7 @@ namespace SmCapstone.Controllers
                 db.SaveChanges();
                 Session["currentUser"] = u;
                 Session["ProfileImg"] = u.Img;
-                return RedirectToAction("Index");
+                return RedirectToAction("ProfilePage");
             }
             else
             {
@@ -122,12 +112,15 @@ namespace SmCapstone.Controllers
                 if (user.Username != null && user.Psw == u.Psw)
                 {
                     FormsAuthentication.SetAuthCookie(user.Username, false);
-                    Session["currentUser"] = u;
-                  
-                    return RedirectToAction("Index");
+
+                    Session["currentUser"] = user;
+                    Session["ProfileImg"] = user.Img;
+
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
+                    ViewBag.Error = "Username o Password non corretti, per favore riprova.";
                     return View();
                 }
             }

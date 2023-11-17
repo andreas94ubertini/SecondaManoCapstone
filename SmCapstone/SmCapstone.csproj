@@ -250,7 +250,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\RegisterUser.cshtml" />
     <Content Include="Views\Users\LogIn.cshtml" />
     <Content Include="Views\Users\ProfilePage.cshtml" />
@@ -265,6 +264,7 @@
     <Content Include="Views\Message\PartialResponse.cshtml" />
     <Content Include="Views\Message\RenderChat.cshtml" />
     <Content Include="Views\Message\SendResponse.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

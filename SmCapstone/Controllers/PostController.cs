@@ -17,12 +17,31 @@ namespace SmCapstone.Controllers
         [HttpGet]
         public ActionResult InsertNewPost()
         {
-
+            List<SelectListItem> listCat = new List<SelectListItem>();
+            List<Categories> c = db.Categories.ToList();
+            SelectListItem itemDefault = new SelectListItem { Text = $"Seleziona una categoria" };
+            listCat.Add(itemDefault);
+            foreach (Categories cat in c)
+            {
+                SelectListItem item = new SelectListItem { Text = $"{cat.Name}", Value = $"{cat.IdCategory}" };
+                listCat.Add(item);
+            }
+            ViewBag.ListCat = listCat;
             return View();
         }
         [HttpPost]
         public ActionResult InsertNewPost(Products p, HttpPostedFileBase Img1, HttpPostedFileBase img2, HttpPostedFileBase img3)
         {
+            List<SelectListItem> listCat = new List<SelectListItem>();
+            List<Categories> c = db.Categories.ToList();
+            SelectListItem itemDefault = new SelectListItem { Text = $"Seleziona una categoria" };
+            listCat.Add(itemDefault);
+            foreach (Categories cat in c)
+            {
+                SelectListItem item = new SelectListItem { Text = $"{cat.Name}", Value = $"{cat.IdCategory}" };
+                listCat.Add(item);
+            }
+            ViewBag.ListCat = listCat;
             ModelState.Remove("IsSold");
             Users u = Session["currentUser"] as Users;
             p.IdUser = u.IdUser;
@@ -58,6 +77,13 @@ namespace SmCapstone.Controllers
             {
                 return View();
             }
+        }
+        public ActionResult DeletePost(int id)
+        {
+            Products p = db.Products.Find(id);
+            db.Products.Remove(p);
+            db.SaveChanges();
+            return RedirectToAction("ProfilePage", "Users");
         }
         public ActionResult ProductDetails(int id)
         {

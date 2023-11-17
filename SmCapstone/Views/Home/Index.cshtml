@@ -1,163 +1,87 @@
 ﻿@model IEnumerable<SmCapstone.Models.Products>
 @{
-    List<SmCapstone.Models.Categories> Cat = TempData["Categories"] as List<SmCapstone.Models.Categories>;
+    List<SmCapstone.Models.Categories> Cat = Session["Categories"] as List<SmCapstone.Models.Categories>;
 }
-
-<!-- carousel -->
-<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button"
-                data-mdb-target="#carouselExampleCaptions"
-                data-mdb-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"></button>
-        <button type="button"
-                data-mdb-target="#carouselExampleCaptions"
-                data-mdb-slide-to="1"
-                aria-label="Slide 2"></button>
-        <button type="button"
-                data-mdb-target="#carouselExampleCaptions"
-                data-mdb-slide-to="2"
-                aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg" class="d-block w-100" alt="Wild Landscape" />
-            <div class="mask" style="background-color: rgba(0, 0, 0, 0.4)"></div>
-            <div class="carousel-caption d-none d-sm-block mb-5">
-                <h1 class="mb-4">
-                    <strong>Learn Bootstrap 5 with MDB</strong>
-                </h1>
-
-                <p>
-                    <strong>Best & free guide of responsive web design</strong>
-                </p>
-
-                <p class="mb-4 d-none d-md-block">
-                    <strong>
-                        The most comprehensive tutorial for the Bootstrap 5. Loved by over 3 000 000 users. Video and written versions
-                        available. Create your own, stunning website.
-                    </strong>
-                </p>
-
-                <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">
-                    Start free tutorial
-                    <i class="fas fa-graduation-cap ms-2"></i>
-                </a>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg" class="d-block w-100" alt="Camera" />
-            <div class="mask" style="background-color: rgba(0, 0, 0, 0.4)"></div>
-            <div class="carousel-caption d-none d-md-block mb-5">
-                <h1 class="mb-4">
-                    <strong>Learn Bootstrap 5 with MDB</strong>
-                </h1>
-
-                <p>
-                    <strong>Best & free guide of responsive web design</strong>
-                </p>
-
-                <p class="mb-4 d-none d-md-block">
-                    <strong>
-                        The most comprehensive tutorial for the Bootstrap 5. Loved by over 3 000 000 users. Video and written versions
-                        available. Create your own, stunning website.
-                    </strong>
-                </p>
-
-                <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">
-                    Start free tutorial
-                    <i class="fas fa-graduation-cap ms-2"></i>
-                </a>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg" class="d-block w-100" alt="Exotic Fruits" />
-            <div class="mask" style="background-color: rgba(0, 0, 0, 0.4)"></div>
-            <div class="carousel-caption d-none d-md-block mb-5">
-                <h1 class="mb-4">
-                    <strong>Learn Bootstrap 5 with MDB</strong>
-                </h1>
-
-                <p>
-                    <strong>Best & free guide of responsive web design</strong>
-                </p>
-
-                <p class="mb-4 d-none d-md-block">
-                    <strong>
-                        The most comprehensive tutorial for the Bootstrap 5. Loved by over 3 000 000 users. Video and written versions
-                        available. Create your own, stunning website.
-                    </strong>
-                </p>
-
-                <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">
-                    Start free tutorial
-                    <i class="fas fa-graduation-cap ms-2"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
-<!--Main layout-->
-<main>
+<main class="card rounded-0">
     <div class="container">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: #607D8B">
-            <!-- Container wrapper -->
-            <div class="container-fluid">
 
-                <!-- Navbar brand -->
-                <a class="navbar-brand" href="#">Categories:</a>
+        <!-- Categoria -->
+        <!-- carousel -->
+        <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button"
+                        data-mdb-target="#carouselExampleCaptions"
+                        data-mdb-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"></button>
+                <button type="button"
+                        data-mdb-target="#carouselExampleCaptions"
+                        data-mdb-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button"
+                        data-mdb-target="#carouselExampleCaptions"
+                        data-mdb-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/Content/assets/imgs/Abbigliamento.png" class="d-block w-100" alt="Wild Landscape" />
 
-                <!-- Toggle button -->
-                <button class="navbar-toggler"
-                        type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarSupportedContent2"
-                        aria-controls="navbarSupportedContent2"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
+                    <div class="carousel-caption d-none d-sm-block mb-5">
 
-                <!-- Collapsible wrapper -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        @foreach (SmCapstone.Models.Categories c in Cat)
-                        {
-                            <li class="nav-item acitve">
-                                <a class="nav-link text-white" href="#@c.Name">@c.Name</a>
-                            </li>
-                        }
-                        <!-- Link -->
-                    </ul>
+                        <a  href="~/Home/Category/6" class="btn btn-outline-white btn-lg">
+                            Scopri ora
 
-                    <!-- Search -->
-                    <form class="w-auto py-1" style="max-width: 12rem">
-                        <input type="search" class="form-control rounded-0" placeholder="Search" aria-label="Search">
-                    </form>
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/Content/assets/imgs/Elettronica.png" class="d-block w-100" alt="Camera" />
 
+                    <div class="carousel-caption d-none d-md-block mb-5">
+
+
+                        <a  href="~/Home/Category/2" class="btn btn-outline-white btn-lg">
+                            Start free tutorial
+                            <i class="fas fa-graduation-cap ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/Content/assets/imgs/CasaEGiardino.png" class="d-block w-100" alt="Exotic Fruits" />
+
+                    <div class="carousel-caption d-none d-md-block mb-5">
+
+                        <a href="~/Home/Category/3" class="btn btn-outline-white btn-lg">
+                            Start free tutorial
+                            <i class="fas fa-graduation-cap ms-2"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <!-- Container wrapper -->
-        </nav>
-        <!-- Navbar -->
-        <!-- Categoria -->
+            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!--Main layout-->
+
+        <div class="row my-2">
+            <div class="col-12 my-nav">
+                <p class="fs-4 m-0 text-light text-center">Vetrina Giornaliera</p>
+            </div>
+        </div>
 
         @foreach (SmCapstone.Models.Categories c in Cat)
         {
-            <div class="row my-2" id="gaming">
-                <div class="col-12" style="background-color: #607D8B">
+            <div class="row my-2" id="@c.Name">
+                <div class="col-12 secondary-nav">
                     <p class="fs-4 m-0 text-light">@c.Name</p>
                 </div>
             </div>
@@ -167,36 +91,22 @@
                     if (p.IdCategory == c.IdCategory)
                     {
 
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card" style="max-width:18rem; ">
-                                @*<div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                                     data-mdb-ripple-color="light">
-                                    <img src="~/Content/assets/productsImgs/@p.Img1"
-                                         class="w-100" />
-                                    <a href="#!">
-                                        <div class="mask">
-                                            <div class="d-flex justify-content-start align-items-end h-100">
-                                                <h5><span class="badge bg-dark ms-2">@p.Categories.Name</span></h5>
-                                            </div>
-                                        </div>
-                                        <div class="hover-overlay">
-                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                        </div>
-                                    </a>
-                                </div>*@
-                               
-                                    <img src="~/Content/assets/productsImgs/@p.Img1"
-                                          />
-                                
-                                
-                                <div class="card-body">
-                                    <a href="" class="text-reset">
-                                        <h5 class="card-title mb-2">@p.Name</h5>
-                                    </a>
-                                    <a href="" class="text-reset ">
-                                        <p>Venduto da: @p.Users.Username</p>
-                                    </a>
-                                    <h6 class="mb-3 price">@String.Format("{0:0.00 €}", p.Price)</h6>
+                        <div class="col-12 col-lg-3 col-md-6 mb-4 d-flex justify-content-center">
+                            <div class="card d-flex flex-column justify-content-between rounded-0" style="max-width:18rem; ">
+
+                                <img src="~/Content/assets/productsImgs/@p.Img1" />
+
+
+                                <div class="card-body d-flex flex-column justify-content-end">
+                                    <div>
+                                        <a href="" class="text-reset">
+                                            <h5 class="card-title mb-2">@p.Name</h5>
+                                        </a>
+                                        <a href="" class="text-reset ">
+                                            <p>Venduto da: @p.Users.Username</p>
+                                        </a>
+                                        <h6 class="mb-3 price">@String.Format("{0:0.00 €}", p.Price)</h6>
+                                    </div>
                                     <a href="/Post/ProductDetails/@p.IdProduct" class="btn btn-success w-100">Vedi</a>
                                 </div>
                             </div>

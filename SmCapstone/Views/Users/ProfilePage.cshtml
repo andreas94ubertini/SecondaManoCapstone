@@ -5,16 +5,23 @@
 }
 <div class="container">
     <div class="main-body py-5">
-        <h2 class="text-center mb-3">Gestici il tuo profilo</h2>
+        <h2 class="text-center mb-3 my-text fs-1">Gestici il tuo profilo</h2>
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex flex-column align-items-center text-center">
+                        <div class="d-flex flex-column align-items-center text-center gap-2">
                             <img src="~/Content/assets/profileImgs/@Model.Img" alt="Profile Image" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>@Model.Username</h4>
                             </div>
+                            <div>
+                                <a class="btn btn-success rounded-pill w-100" href="/Users/EditUser">Modifica Profilo</a>
+                                <a class="btn btn-primary rounded-pill w-100 mt-1" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                                    Messaggi
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -69,14 +76,6 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a class="btn btn-success rounded-pill " target="__blank" href="/Users/EditUser">Modifica Profilo</a>
-                                <a class="btn btn-primary rounded-pill" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                                    Messaggi
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -93,9 +92,13 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h5 class="card-title">Oggetto: <strong>@Model.Products.FirstOrDefault().Name</strong></h5>
-                                                        <p class="card-text">Prezzo: <strong>@Model.Products.FirstOrDefault().Price</strong></p>
+                                                        <p class="card-text">Prezzo: <strong>@String.Format("{0:0.00 €}", Model.Products.FirstOrDefault().Price)</strong></p>
                                                         <p class="card-text">Offerte Ricevute: <strong>@Model.Products.FirstOrDefault().Bids.Count()</strong></p>
                                                         <a href="/Post/ProductDetails/@Model.Products.FirstOrDefault().IdProduct" class="btn btn-primary">Mostra</a>
+                                                        @if (Model.Bids.Count == 0)
+                                                        {
+                                                            <a href="/Post/DeletePost/@Model.Products.FirstOrDefault().IdProduct" class="btn btn-danger">Elimina</a>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,9 +122,13 @@
                                                     <div class="card">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Oggetto: <strong>@p.Name</strong></h5>
-                                                            <p class="card-text">Prezzo: <strong>@p.Price</strong></p>
+                                                            <p class="card-text">Prezzo: <strong>@String.Format("{0:0.00 €}", p.Price)</strong></p>
                                                             <p class="card-text">Offerte Ricevute: <strong>@p.Bids.Count()</strong></p>
                                                             <a href="/Post/ProductDetails/@p.IdProduct" class="btn btn-primary">Mostra</a>
+                                                            @if (p.Bids.Count == 0)
+                                                            {
+                                                                <a href="/Post/DeletePost/@p.IdProduct" class="btn btn-danger">elimina</a>
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>
@@ -146,17 +153,10 @@
                     <div class="col-sm-12 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
-                                <p class="fs-5 text-center">Offerte Ricevute</p>
+                                <p class="fs-5 text-center my-text">Offerte Ricevute</p>
                             </div>
-                            <div class="card-body d-flex flex-column">
-                                <p class="m-0">Offerte Accettate</p>
-                                @foreach (SmCapstone.Models.Bids b in Model.Bids)
-                                {
-                                    if (b.IsAccepted == true)
-                                    {
-                                        <p>Ti sei aggiudicato @b.Products.Name per @b.Price eur</p>
-                                    }
-                                }
+                            <div class="card-body d-flex flex-column gap-2">
+
                                 @foreach (SmCapstone.Models.Products p in Model.Products)
                                 {
 
@@ -165,14 +165,22 @@
                                     {
                                         if (p.Bids.Count > 0)
                                         {
-                                            <p>Il tuo annuncio per @p.Name</p>
+                                            foreach (SmCapstone.Models.Bids bi in p.Bids)
+                                            {
+                                                if (bi.IsAccepted == null)
+                                                {
+                                                    <p class="my-nav text-light text-center py-2 mt-1">Il tuo annuncio per @p.Name</p>
+                                                    break;
+                                                }
+                                            }
+
                                             foreach (SmCapstone.Models.Bids b in p.Bids)
                                             {
                                                 if (b.IsAccepted == null)
                                                 {
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <p>Offerta: @b.Price Eur</p>
+                                                            <p>Offerta: @String.Format("{0:0.00 €}", b.Price)</p>
                                                             <p>Messaggio: @b.Message</p>
                                                             <p>Proposta inviata da: @b.Users.Username</p>
                                                             <p>Data: @b.BidDate</p>
@@ -182,6 +190,7 @@
                                                     </div>
                                                 }
                                             }
+
                                         }
                                     }
                                 }
@@ -191,20 +200,20 @@
                 </div>
                 <div class="row gutters-sm">
                     <div class="col-sm-12 mb-3">
-                        work
+
                         <div class="card h-100">
                             <div class="card-body">
-                                <p class="fs-5 text-center">Tutte le offerte inviate</p>
+                                <p class="fs-5 text-center my-text">Tutte le offerte inviate</p>
                             </div>
                             <div class="card-body">
-                                <p class="m-0">Offerte Inviate</p>
+
                                 @foreach (SmCapstone.Models.Bids b in Model.Bids)
                                 {
 
 
                                     if (b.Products.IsSold != true || b.IsAccepted == true)
                                     {
-                                        <div class="card">
+                                        <div class="card mt-2">
 
                                             <div class="card-body">
                                                 @if (b.IsAccepted == true)
@@ -212,19 +221,7 @@
                                                         <span class="badge rounded-pill badge-success">Accettata</span>
                                                     </p>
 
-                                                    foreach (SmCapstone.Models.Transactions t in b.Transactions)
-                                                    {
-                                                        if (t.IsPaid)
-                                                        {
 
-
-                                                            <p>Pagato ok</p>
-                                                        }
-                                                        else
-                                                        {
-                                                            <a class="btn btn-primary" href="/Post/CheckOut/@t.IdTransaction">Paga ora</a>
-                                                        }
-                                                    }
 
 
 
@@ -232,12 +229,31 @@
                                                 @if (b.IsAccepted == false && b.Products.IsSold != true)
                                                 {<p><span class="badge rounded-pill badge-danger">Rifiutata</span></p>}
                                                 @if (b.IsAccepted == null && b.Products.IsSold != true)
-                                                {<p><span class="badge rounded-pill badge-primary">In Corso</span><a href="/Post/DeleteOffer/@b.IdBid">Elimina Offerta</a></p>}
+                                                {
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <span class="badge rounded-pill badge-primary">In Corso</span>
+
+                                                        <a href="/Post/DeleteOffer/@b.IdBid"><i class="fa-regular fa-trash-can"></i></a>
+
+                                                    </div>
+                                                }
 
                                                 <h5 class="card-title">Oggetto: <strong>@b.Products.Name</strong></h5>
-                                                <p class="card-text">Prezzo: <strong>@b.Price</strong></p>
+                                                <p class="card-text">Prezzo: <strong>@String.Format("{0:0.00 €}", b.Price)</strong></p>
                                                 <p class="card-text">Data: <strong>@b.BidDate.ToShortDateString()</strong></p>
-                                                <a href="/Post/ProductDetails/" class="btn btn-primary">Mostra</a>
+                                                @foreach (SmCapstone.Models.Transactions t in b.Transactions)
+                                                {
+                                                    if (t.IsPaid)
+                                                    {
+
+
+                                                        <p class="badge rounded-pill badge-success m-0">Pagato</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="btn btn-primary" href="/Post/CheckOut/@t.IdTransaction">Paga ora</a>
+                                                    }
+                                                }
                                             </div>
                                         </div>
                                     }
@@ -269,88 +285,90 @@
 
             <div class="col-12">
 
-                    <ul class="list-unstyled mb-0">
-                        @foreach (SmCapstone.Models.Chats c in Model.Chats)
-                        {
+                <ul class="list-unstyled mb-0">
+                    @foreach (SmCapstone.Models.Chats c in Model.Chats)
+                    {
 
-                            <li class="p-2 border-bottom mb-1" style="background-color: #eee;">
-                                <a href="/Message/SendResponse/@c.IdChat" class="d-flex justify-content-between">
-                                    <div class="d-flex flex-row">
-                                        <img src="~/Content/assets/profileImgs/@c.Users1.Img" alt="avatar"
-                                             class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                                        <div class="pt-1">
-                                            <p class="fw-bold mb-0">@c.Users1.Username</p>
-
-                                            @foreach (SmCapstone.Models.Messages m in c.Messages.Reverse())
-                                            {
-                                                <p class="small text-muted">@m.Message</p>
-
-                                                break;
-                                            }
-                                        </div>
-                                    </div>
+                        <li class="p-2 border-bottom mb-1" style="background-color: #eee;">
+                            <a href="/Message/SendResponse/@c.IdChat" class="d-flex justify-content-between">
+                                <div class="d-flex flex-row">
+                                    <img src="~/Content/assets/profileImgs/@c.Users1.Img" alt="avatar"
+                                         class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
                                     <div class="pt-1">
-                                        @foreach (SmCapstone.Models.Messages m in c.Messages.Reverse())
-                                        {
-                                            <p class="small text-muted mb-1">@m.Date.ToShortDateString()</p>
-                                            if (m.IsRead == false)
-                                            {
-                                                <span class="badge bg-danger float-end">1</span>
-                                                break;
-
-                                            }
-                                            break;
-
-                                        }
-                                    </div>
-                                </a>
-                            </li>
-
-                        }
-                        @foreach (SmCapstone.Models.Chats c in Model.Chats1)
-                        {
-
-                            <li class="p-2 border-bottom mb-1" style="background-color: #eee;">
-                                <a href="/Message/SendResponse/@c.IdChat" class="d-flex justify-content-between">
-                                    <div class="d-flex flex-row">
-                                        <img src="~/Content/assets/profileImgs/@c.Users.Img" alt="avatar"
-                                             class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                                        <div class="pt-1">
-                                            <p class="fw-bold mb-0">@c.Users.Username</p>
-
-                                            @foreach (SmCapstone.Models.Messages m in c.Messages.Reverse())
-                                            {
-                                                <p class="small text-muted">@m.Message</p>
-
-                                                break;
-                                            }
-                                        </div>
-                                    </div>
-                                    <div class="pt-1">
+                                        <p class="fw-bold mb-0">@c.Users1.Username</p>
 
                                         @foreach (SmCapstone.Models.Messages m in c.Messages.Reverse())
                                         {
-                                            <p class="small text-muted mb-1">@m.Date.ToShortDateString()</p>
-                                            if (m.IsRead == false)
-                                            {
-                                                <span class="badge bg-danger float-end">1</span>
-                                                break;
 
-                                            }
+                                            <p class="small text-muted">@m.Message</p>
 
                                             break;
                                         }
-
                                     </div>
-                                </a>
-                            </li>
-                        }
-                    </ul>
+                                </div>
+                                <div class="pt-1">
+                                    @foreach (SmCapstone.Models.Messages m in c.Messages.Reverse())
+                                    {
+                                        <p class="small text-muted mb-1">@m.Date.ToShortDateString()</p>
+                                        if (m.IsRead == false && m.IdUserReceiving != c.Users1.IdUser)
+                                        {
+                                            <span class="badge bg-danger float-end">!</span>
+
+                                            break;
+
+                                        }
+                                        break;
+
+                                    }
+                                </div>
+                            </a>
+                        </li>
+
+                    }
+                    @foreach (SmCapstone.Models.Chats c in Model.Chats1)
+                    {
+
+                        <li class="p-2 border-bottom mb-1" style="background-color: #eee;">
+                            <a href="/Message/SendResponse/@c.IdChat" class="d-flex justify-content-between">
+                                <div class="d-flex flex-row">
+                                    <img src="~/Content/assets/profileImgs/@c.Users.Img" alt="avatar"
+                                         class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                    <div class="pt-1">
+                                        <p class="fw-bold mb-0">@c.Users.Username</p>
+
+                                        @foreach (SmCapstone.Models.Messages m in c.Messages.Reverse())
+                                        {
+                                            <p class="small text-muted">@m.Message</p>
+
+                                            break;
+                                        }
+                                    </div>
+                                </div>
+                                <div class="pt-1">
+
+                                    @foreach (SmCapstone.Models.Messages m in c.Messages.Reverse())
+                                    {
+                                        <p class="small text-muted mb-1">@m.Date.ToShortDateString()</p>
+                                        if (m.IsRead == false && m.IdUserReceiving != c.Users.IdUser)
+                                        {
+
+                                            <span class="badge bg-danger float-end">!</span>
+                                            break;
+
+                                        }
+
+                                        break;
+                                    }
+
+                                </div>
+                            </a>
+                        </li>
+                    }
+                </ul>
 
 
             </div>
         </div>
     </div>
 </div>
-
 
