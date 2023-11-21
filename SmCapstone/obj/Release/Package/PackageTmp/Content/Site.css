@@ -1,4 +1,8 @@
-﻿/*.bg-color {
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+
+.bg-color {
     background-color: #FF6B6B;
 }
 .bg-color-sec {
@@ -16,10 +20,6 @@
 
 
 
-
-
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
 
 .box-1 {
@@ -175,37 +175,37 @@ input[type="radio"] {
 }
 
 
-.carousel-indicators [data-bs-target] {
+.check .carousel-indicators [data-bs-target] {
     width: 10px;
     height: 10px;
     border-radius: 50%;
 }
 
-.carousel-inner {
+.check .carousel-inner {
     width: 100%;
     height: 250px;
 }
 
-.carousel-item img {
+.check .carousel-item img {
     object-fit: cover;
     height: 100%;
 }
 
-.carousel-control-prev {
+.check .carousel-control-prev {
     transform: translateX(-50%);
     opacity: 1;
 }
 
-    .carousel-control-prev:hover .fas.fa-arrow-left {
+    .check .carousel-control-prev:hover .fas.fa-arrow-left {
         transform: translateX(-5px);
     }
 
-.carousel-control-next {
+.check .carousel-control-next {
     transform: translateX(50%);
     opacity: 1;
 }
 
-    .carousel-control-next:hover .fas.fa-arrow-right {
+    .check .carousel-control-next:hover .fas.fa-arrow-right {
         transform: translateX(5px);
     }
 
@@ -264,13 +264,14 @@ input[type="radio"] {
 
 
 
-*/
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700&display=swap');
 
 .my-nav {
-    background-color: rgb(5,115,240);
+    background-color: rgb(5,115,240) !important;
     
+}
+.my-text {
+    color: rgb(5,115,240) !important;
+    font-family: 'Poppins', sans-serif;
 }
 .my-btn {
     background-color: rgb(7,105,218) !important;

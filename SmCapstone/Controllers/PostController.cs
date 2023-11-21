@@ -152,12 +152,28 @@ namespace SmCapstone.Controllers
         [HttpGet]
         public ActionResult CheckOut(int id)
         {
+            List<SelectListItem> l = new List<SelectListItem>();
+            SelectListItem Default = new SelectListItem { Text = $"Seleziona un opzione" };
+            SelectListItem True = new SelectListItem { Text = $"Spedizione", Value = "true"};
+            SelectListItem False = new SelectListItem { Text = $"Ritiro a mano", Value = $"false" };
+            l.Add(Default);
+            l.Add(True);
+            l.Add(False);
+            ViewBag.listShipping = l;
             Transactions t = db.Transactions.Find(id);
             return View(t);
         }
         [HttpPost]
         public ActionResult CheckOut(Transactions t)
         {
+            List<SelectListItem> l = new List<SelectListItem>();
+            SelectListItem Default = new SelectListItem { Text = $"Seleziona un opzione" };
+            SelectListItem True = new SelectListItem { Text = $"Spedizione", Value = "true" };
+            SelectListItem False = new SelectListItem { Text = $"Ritiro a mano", Value = $"false" };
+            l.Add(Default);
+            l.Add(True);
+            l.Add(False);
+            ViewBag.listShipping = l;
             if (ModelState.IsValid)
             {
                 t.IsPaid = true;

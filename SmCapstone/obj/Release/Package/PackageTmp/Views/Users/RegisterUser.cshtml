@@ -4,7 +4,13 @@
     ViewBag.Title = "RegisterUser";
 }
 
-<h2 class="text-center my-4">Registra un nuovo account per iniziare a fare affari...</h2>
+<h1 class="text-center my-4 my-text">Registra un nuovo account per iniziare a fare affari...</h1>
+@if(ViewBag.Error != null)
+            {
+                <div class="alert alert-danger text-center">
+                    <p class="m-0">@ViewBag.Error</p>
+                </div>
+            }
 
 
 @using (Html.BeginForm("RegisterUser", "Users", FormMethod.Post, new { @enctype = "multipart/form-data" }))
@@ -94,9 +100,6 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

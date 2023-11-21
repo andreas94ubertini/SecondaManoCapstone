@@ -109,7 +109,7 @@ namespace SmCapstone.Controllers
             if (ModelState.IsValid)
             {
                 Users user = db.Users.SingleOrDefault(x => x.Username == u.Username);
-                if (user.Username != null && user.Psw == u.Psw)
+                if (user != null && user.Username != null && user.Psw == u.Psw)
                 {
                     FormsAuthentication.SetAuthCookie(user.Username, false);
 

@@ -1,23 +1,25 @@
 ﻿@model IEnumerable<SmCapstone.Models.Products>
 
 @{
-    ViewBag.Title = "AllProducts";
+    ViewBag.Title = "Risulati Ricerca";
 }
 
-<h2>AllProducts</h2>
-
-
-
-
+<h2 class="text-center my-text fs-1 mt-3">Risultato ricerca:</h2>
 
 <div class="container mt-5 mb-5">
+
     <div class="d-flex justify-content-center row">
-        <div class="col-md-10">
-            @foreach (SmCapstone.Models.Products p in Model)
-            {
-                if (p.IsSold != true)
-                {
-                    <div class="row my-2">
+        @if (TempData["NotFound"] != null)
+        {
+            <div class="col-12 text-center card py-5">
+                <p class="card-text">@TempData["NotFound"]</p>
+            </div>
+        }
+
+        @foreach (var p in Model)
+        {
+                <div class="row my-2 justify-content-center">
+                    <div class="col-12 col-lg-10">
                         <div class="card flex-md-row my-card gap-2 p-3">
                             <div class="col-md-1 mt-1 d-flex align-items-center">
                                 <img class="img-fluid" src="~/Content/assets/productsImgs/@p.Img1">
@@ -25,6 +27,7 @@
                             <div class="col-md-8 mt-1 ps-md-5">
                                 <h5>@p.Name</h5>
                                 <div class="d-flex gap-2">
+
                                     <p>Venduto da: @p.Users.Username</p>
                                     <div>
                                         <img src="~/Content/assets/profileImgs/@p.Users.Img" class="img-thumbnail rounded-circle" width="25" alt="">
@@ -35,25 +38,25 @@
                                     <p>Rating Venditore: </p>
                                     <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
                                 </div>
-                                <p class="text-justify text-truncate para mb-0">@p.Description<br><br></p>
+
                             </div>
-                            <div class="align-items-center align-content-center col-md-3 mt-1">
+                            <div class="col-md-3 mt-1">
                                 <div class="d-flex flex-row align-items-center">
                                     <h4 class="mr-1"> @String.Format("{0:0.00 €}", p.Price)</h4>
                                 </div>
                                 <h6 class="text-success"><span class="text-dark">Costo spedizione: </span>@String.Format("{0:0.00 €}", p.DeliveryPrice)</h6>
                                 <div class="d-flex flex-column mt-4 pe-md-3">
                                     <a href="/Post/ProductDetails/@p.IdProduct" class="btn btn-primary btn-sm">Dettagli</a>
-                                    <a href="/Post/MakeOffer/@p.IdProduct" class="btn btn-outline-primary btn-sm mt-2">Fai un offerta</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                }
-            }
-        </div>
+                </div>
+        }
+
     </div>
-</div>
+    </div>
+
 
 
 

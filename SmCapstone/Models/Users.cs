@@ -26,10 +26,12 @@ namespace SmCapstone.Models
 
         [Required]
         [StringLength(30)]
+        [Display(Name = "Nome")]
         public string Name { get; set; }
 
         [Required]
         [StringLength(30)]
+        [Display(Name = "Cognome")]
         public string Surname { get; set; }
 
         [Required]
@@ -42,7 +44,9 @@ namespace SmCapstone.Models
 
         [Required]
         [StringLength(30)]
+        [Display(Name = "Password")]
         public string Psw { get; set; }
+        [Display(Name = "Immagine profilo")]
 
         public string Img { get; set; }
 

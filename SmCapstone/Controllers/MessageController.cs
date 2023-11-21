@@ -41,6 +41,7 @@ namespace SmCapstone.Controllers
                         chats.IdUserOne = currentUser.IdUser;
                         db.Chats.Add(chats);
                         db.SaveChanges();
+                        return View();
                     }
                 }
             }
@@ -51,6 +52,7 @@ namespace SmCapstone.Controllers
                 chats.IdUserOne = currentUser.IdUser;
                 db.Chats.Add(chats);
                 db.SaveChanges();
+                return View();
             }
             return View();
         }
@@ -80,7 +82,11 @@ namespace SmCapstone.Controllers
                 db.Messages.Add(m);
                 db.SaveChanges();
             }
-            return View();
+            int id = IdChat;
+            return RedirectToAction("SendResponse", new
+            {
+                id
+            });
         }
         [HttpGet]
         public ActionResult PartialResponse(int id)

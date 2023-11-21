@@ -4,7 +4,7 @@
     ViewBag.Title = "CheckOut";
 }
 
-<h2>CheckOut</h2>
+<h2 class="text-center my-text">Procedi al pagamento</h2>
 
 
 @using (Html.BeginForm())
@@ -93,8 +93,8 @@
         <div class="box-2">
             <div class="box-inner-2">
                 <div>
-                    <p class="fw-bold">Payment Details</p>
-                    <p class="dis mb-3">Complete your purchase by providing your payment details</p>
+                    <p class="fw-bold">Dettagli pagamento</p>
+                    <p class="dis mb-3">Inserisci i tuoi dati per completare il pagamento</p>
                 </div>
                 <div class="form-horizontal">
 
@@ -103,17 +103,17 @@
 
 
                     <div class="form-outline mb-2 border-bottom">
-                        @Html.LabelFor(model => model.IsShipping, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-md-2" })
+                        @Html.LabelFor(model => model.IsShipping, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-12" })
                         <div class="col-12">
                             <div class="checkbox">
-                                @Html.EditorFor(model => model.IsShipping)
+                                @Html.DropDownListFor(model => model.IsShipping, new SelectList(ViewBag.listShipping, "Value", "Text"), new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.IsShipping, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
 
                     <div class="form-outline mb-2 border-bottom">
-                        @Html.LabelFor(model => model.Province, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-md-2" })
+                        @Html.LabelFor(model => model.Province, htmlAttributes: new { @class = "control-label dis fw-bold mb-2 col-12" })
                         <div class="col-12">
                             @Html.EditorFor(model => model.Province, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Province, "", new { @class = "text-danger" })
@@ -173,20 +173,24 @@
 
                             <div class="d-flex flex-column dis">
                                 <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <p>Prodotto</p>
-                                    <p><span class="fas fa-dollar-sign"></span>@String.Format("{0:0.00 €}", Model.Bids.Price)</p>
+                                    <p>Prezzo</p>
+                                    <p>@String.Format("{0:0.00 €}", Model.Bids.Price)</p>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                <div class="d-flex align-items-center justify-content-between mb-2" id="shipping-price">
                                     <p>Spedizione</p>
-                                    <p><span class="fas fa-dollar-sign"></span>@String.Format("{0:0.00 €}", Model.Bids.Products.DeliveryPrice)</p>
+                                    <p>@String.Format("{0:0.00 €}", Model.Bids.Products.DeliveryPrice)</p>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                <div class="d-flex align-items-center justify-content-between mb-2" id="shipping">
                                     <p class="fw-bold">Totale</p>
-                                    <p class="fw-bold"><span class="fas fa-dollar-sign"></span>@String.Format("{0:0.00 €}", Model.Bids.Price + Model.Bids.Products.DeliveryPrice)</p>
+                                    <p class="fw-bold">@String.Format("{0:0.00 €}", Model.Bids.Price + Model.Bids.Products.DeliveryPrice)</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between mb-2 d-none" id="no-shipping">
+                                    <p class="fw-bold">Totale</p>
+                                    <p class="fw-bold">@String.Format("{0:0.00 €}", Model.Bids.Price)</p>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-12">
-                                        <input type="submit" value="Paga Ora @String.Format("{0:0.00 €}", Model.Bids.Price + Model.Bids.Products.DeliveryPrice)" class="btn btn-primary w-100" />
+                                        <input type="submit" value="Paga Ora" class="btn btn-primary w-100 disabled" id="pay" />
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +200,28 @@
             </div>
         </div>
     </div>
+
 }
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+<script>
+    let shippingTarget = document.getElementById("IsShipping");
+    shippingTarget.addEventListener("change", function () {
+        if (shippingTarget.value === "true") {
+            document.getElementById("shipping").classList.remove("d-none")
+            document.getElementById("shipping-price").classList.remove("d-none")
+            document.getElementById("no-shipping").classList.add("d-none")
+            document.getElementById("pay").classList.remove("disabled")
+
+        } else if (shippingTarget.value === "false") {
+            document.getElementById("shipping").classList.add("d-none")
+            document.getElementById("shipping-price").classList.add("d-none")
+            document.getElementById("no-shipping").classList.remove("d-none")
+            document.getElementById("pay").classList.remove("disabled")
+
+        } else {
+            document.getElementById("pay").classList.add("disabled")
+        }
+    })
+    
+</script>
+
